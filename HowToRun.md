@@ -4,7 +4,7 @@
 virtualenv venv
 source venv/bin/activate
 pip3 install -r requirements.txt
-pytest --cov=shoppingcart --cov=models.py --cov=data --cov-report=html
+pytest --cov=shoppingcart --cov=models --cov=data --cov-report=html
 ```
 * To view the coverage report, we can run
 ```bash
