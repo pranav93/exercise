@@ -78,3 +78,25 @@ def test_set_product_source_to_dict():
     receipt = cart.print_receipt()
 
     assert receipt[0] == "apple - 1 - £0.86"
+
+
+def test_check_total():
+    cart = ShoppingCart()
+    cart.add_item("banana", 1)
+    cart.add_item("kiwi", 1)
+
+    receipt = cart.print_receipt()
+
+    assert receipt[-1] == "Total - €4.10"
+
+
+def test_set_product_source_to_database():
+    os.environ["data_source"] = "DATABASE"
+    reload(config)
+
+    cart = ShoppingCart()
+    cart.add_item("apple", 1)
+
+    receipt = cart.print_receipt()
+
+    assert receipt[0] == "apple - 1 - €1.00"

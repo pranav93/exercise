@@ -2,7 +2,7 @@ import json
 
 from . import abc
 import config
-from data import product_info
+from data import product_info, database
 
 
 class Products(abc.Products):
@@ -15,7 +15,7 @@ class Products(abc.Products):
         if data_source == 'JSON':
             self._load_data_from_json()
         if data_source == 'DATABASE':
-            raise NotImplementedError('This is yet to be implemented')
+            self._load_data_from_database()
         if data_source == 'DICT':
             self._load_data_from_dict()
 
@@ -27,7 +27,8 @@ class Products(abc.Products):
         self._products = product_info.products
 
     def _load_data_from_database(self):
-        pass
+        self._products = database.get_products()
+        print(self._products)
 
     def get_product_price(self, product_code: str) -> float:
         return self._products.get(product_code, 0.0)
