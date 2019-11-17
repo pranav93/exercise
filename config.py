@@ -1,2 +1,4 @@
-data_source = 'JSON'
-# data_source = 'DICT'
+import os
+
+
+data_source = os.environ.get('data_source', 'JSON')
